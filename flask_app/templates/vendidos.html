@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h2 class="text-center">Bienvenido a Sistema Venta de Autos </h2>
+        <h4>(Usuario: {{user.first_name}} {{user.last_name}}) </h4>
+        
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-info">Dashboard</a>
+            <a href="/logout" class="btn btn-info">Log out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                    <h2 class="text-left">Lista de Autos Vendidos</h2>  
+                <table class="table table-hover border">
+                    <thead>
+                        <tr>
+                            <th>Make</th>
+                            <th>Modelo</th>
+                            <th>Year</th>
+                            <!-- <th>Seller</th> -->
+                            <!-- <th>Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in cars %}
+                            <tr>
+                                <td>{{car.model}}</td>
+                                <td>{{car.Year}}</td>
+                                <td>{{car.first_name}} {{car.last_name}}</td>
+                                <td>
+                                    {% if car.seller_id == user.id %}
+                                    <a href="/edit/car/{{car.id}}">Edit</a>
+                                    {% endif %}
+                                    <a href="/car/{{car.id}}">View</a>                           
+                                    {% if car.seller_id == user.id %}
+                                    <a href="/destroy/car/{{car.id}}">Delete</a>  
+                                    {% endif %}
+                                    {% if car.seller_id == user.id %}
+                                    <a href="/vendido/car/{{car.id}}">Comprado</a>  
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

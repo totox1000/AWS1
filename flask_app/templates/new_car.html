@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Car</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Bienvenido {{user.first_name}} {{user.last_name}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+        </div>
+
+    </nav>
+    <form action="/create/car" method="post" class="col-11 p-4 my-4 bg-dark text-light mx-auto">
+        <h2 class="text-primary">Agregar auto a la venta</h2>
+        {% with messages = get_flashed_messages(category_filter=['car']) %} <!-- Declara una variable llamda mensajes -->
+            {% if messages %} <!-- Comprobar si hay algun mensaje -->
+            <div class="alert alert-danger" role="alert">
+                <strong>Flash AHHHHHHH!!!!</strong>
+                    {% for message in messages %} <!-- recorrer los mensajes -->
+                    <p>{{message}}</p> <!-- muestra cada mensaje en una etiqueta de parrafo -->
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="d-flex justify-content-between col-9">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="text" name="precio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="model">Modelo:</label>
+                    <input type="text" name="model" class="form-control" required>
+                </div>
+                <div>
+                <div class="form-group">
+                <label for="Make">Marca:</label>
+                <input type="text" name="Make" class="form-control" required>
+                </div>
+                <div>
+                <div class="form-group">
+                <label for="Year">Año:</label>
+                <input type="number" min="1900" max="2023"class="form-control" name="Year" value="1900">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Descripcion:</label>
+                    <textarea name="Description"  cols="30" rows="5" class="form-control"></textarea>
+                </div> 
+                <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-primary"> 
+                </div>           
+            </div>
+        </div>
+    </form>
+</body>
+</html>
