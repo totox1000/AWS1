@@ -12,7 +12,7 @@ class MySQLConnection:
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
                                     autocommit = True,
-                                    ssl={'ca': '/home/site/wwwroot/ssl/BaltimoreCyberTrustRoot.crt.pem'})
+                                    ssl={'ca': '/home/site/wwwroot/BaltimoreCyberTrustRoot.crt.pem'})
         # establecer la conexión a la base de datos
         self.connection = connection
     # el método para consultar la base de datos
